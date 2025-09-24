@@ -80,7 +80,7 @@ body {
 #scapp .logo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
@@ -266,4 +266,5 @@ body {
 #scapp .log::-webkit-scrollbar-thumb {
   background: #DDD;
   border-radius: 10px;
+
 }
