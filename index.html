@@ -1,0 +1,37 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Self-Compass AI Coach</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<div id="scapp">
+  <div class="container">
+    <div class="header">
+      <div class="brand">
+        <div class="logo">
+          </div>
+        <div>
+          <div class="ttl">Self-Compass AI Coach</div>
+          <div class="sub">Calm → Clarity → Connection</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="log" class="log" aria-live="polite"></div>
+
+    <form id="form" class="composer">
+      <textarea id="t" placeholder="Type a few words…… (Enter: send)"></textarea>
+      <button id="send" class="send">Send</button>
+    </form>
+
+    <footer>
+      <div class="sep"></div>Powered by OpenAI • Knowledge base: Self-Compass
+    </footer>
+  </div>
+</div>
+
+<script src="app.js"></script>
