@@ -142,6 +142,10 @@ body {
   border-radius: 19px 19px 6px 19px;
 }
 
+#scapp .you .bubble .meta {
+  color: var(--user-ink) !important;
+}
+
 #scapp .bot .bubble {
   background: var(--bot) !important;
   color: var(--bot-ink) !important;
@@ -266,5 +270,4 @@ body {
 #scapp .log::-webkit-scrollbar-thumb {
   background: #DDD;
   border-radius: 10px;
-
 }
