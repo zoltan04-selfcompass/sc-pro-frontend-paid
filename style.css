@@ -186,6 +186,15 @@ body {
   padding: 12px 14px;
 }
 
+/* ✅ Placeholder-only gentle styling */
+#scapp textarea::placeholder {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 15px;
+  color: #6B7280;
+  letter-spacing: 0.1px;
+}
+
 #scapp textarea:focus {
   outline: none;
   border-color: var(--user) !important;
@@ -271,4 +280,3 @@ body {
   background: #DDD;
   border-radius: 10px;
 }
-
