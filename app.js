@@ -66,7 +66,7 @@ function setBusy(on) {
   t.disabled = on;
 }
 
-bubble('assistant', 'Welcome. How are you, really?. <span class="meta">No right or wrong — just share what feels true for you.</span>');
+bubble('assistant', 'Welcome. How are you, really? <span class="meta">No right or wrong — just share what feels true for you.</span>');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -172,4 +172,5 @@ t.addEventListener('keydown', (e) => {
     e.preventDefault();
     form.requestSubmit();
   }
+
 });
