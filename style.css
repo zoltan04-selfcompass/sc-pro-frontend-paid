@@ -211,7 +211,7 @@ body {
   cursor: pointer;
   height: 41px;
   font-size: 15px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* szolid árnyék */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* szolid árnyék */
 }
 
 #scapp .send:hover {
@@ -282,3 +282,4 @@ body {
   background: #DDD;
   border-radius: 10px;
 }
+
