@@ -10,6 +10,18 @@ window.addEventListener("DOMContentLoaded", () => {
   t.focus();
 });
 
+// ✅ Placeholder lassú váltogatás
+const placeholders = [
+  "Write a few words here… or more…",
+  "What matters most now?"
+];
+
+let phIndex = 0;
+setInterval(() => {
+  phIndex = (phIndex + 1) % placeholders.length;
+  t.setAttribute("placeholder", placeholders[phIndex]);
+}, 10000); // 10s nyugodt váltás
+
 function esc(s) {
   return s.replace(/[&<>\"']/g, c => ({
     '&': '&amp;',
