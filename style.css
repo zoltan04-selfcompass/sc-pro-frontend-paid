@@ -200,17 +200,18 @@ body {
   border-color: var(--user) !important;
 }
 
+/* ✅ Frissített Send gomb */
 #scapp .send {
   background: var(--cta) !important;
   color: var(--cta-ink) !important;
   font-weight: 700;
   padding: 12px 16px;
-  border: 0;
+  border: 1px solid rgba(0, 0, 0, 0.06); /* finom szürke keret */
   border-radius: 10px;
   cursor: pointer;
   height: 41px;
   font-size: 15px;
-  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.08); /* szolid szürke árnyék */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* szolid árnyék */
 }
 
 #scapp .send:hover {
@@ -281,6 +282,3 @@ body {
   background: #DDD;
   border-radius: 10px;
 }
-
-
-
