@@ -1,8 +1,14 @@
+// app.js
 let threadId = localStorage.getItem("sc_thread_id") || null;
 const log = document.getElementById('log');
 const form = document.getElementById('form');
 const t = document.getElementById('t');
 const sendBtn = document.getElementById('send');
+
+// ✅ Oldal betöltés után kurzor azonnal a mezőbe kerül
+window.addEventListener("DOMContentLoaded", () => {
+  t.focus();
+});
 
 function esc(s) {
   return s.replace(/[&<>\"']/g, c => ({
@@ -147,7 +153,7 @@ async function streamChat(text) {
       try {
         const j = JSON.parse(data);
         if (event === 'thread.message.delta' && j?.delta) {
-          for (const c of(j.delta.content || [])) {
+          for (const c of (j.delta.content || [])) {
             if (c?.text?.value) {
               collected += c.text.value;
             }
@@ -172,6 +178,4 @@ t.addEventListener('keydown', (e) => {
     e.preventDefault();
     form.requestSubmit();
   }
-
 });
-
