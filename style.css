@@ -116,8 +116,13 @@ body {
   border: 1px solid var(--line) !important;
   border-radius: var(--radius);
   padding: 10px 12px;
-  overflow: auto;
+  overflow-y: auto;
   box-shadow: var(--shadow) !important;
+
+  /* Rugalmas magasság animációval */
+  min-height: 200px;
+  max-height: 70vh;
+  transition: max-height 0.3s ease;
 }
 
 #scapp .row {
@@ -211,7 +216,7 @@ body {
   cursor: pointer;
   height: 41px;
   font-size: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* szolid árnyék */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); /* szolid árnyék */
 }
 
 #scapp .send:hover {
@@ -249,14 +254,8 @@ body {
 }
 
 @keyframes blink {
-  0%,
-  80%,
-  100% {
-    opacity: .25
-  }
-  40% {
-    opacity: 1
-  }
+  0%, 80%, 100% { opacity: .25 }
+  40% { opacity: 1 }
 }
 
 /* Footer */
@@ -282,4 +281,3 @@ body {
   background: #DDD;
   border-radius: 10px;
 }
-
