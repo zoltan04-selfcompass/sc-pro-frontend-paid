@@ -1,3 +1,5 @@
+/* style.css — Self-Compass chat UI (stable layout with internal log scroll) */
+
 :root {
   --bg: #FAFBFC;
   --panel: #FFFFFF;
@@ -24,10 +26,9 @@ html, body {
   margin: 0;
 }
 
-/* ⬇️ NEM fix magasság, hanem minimum — nőhet a tartalommal */
+/* Stabil keret: a teljes app kitölti a viewportot */
 #scapp {
-  min-height: 100dvh;
-  height: auto;
+  height: 100dvh;           /* vissza a fix nézetmagasságra */
   background: transparent !important;
   color: var(--ink) !important;
   font: 16px/1.55 "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial !important;
@@ -35,11 +36,11 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-/* ⬇️ A container is auto magasságú; sorok nem kényszerítik fixre */
+/* Rács: középső sor rugalmas tér (1fr) */
 #scapp .container {
-  height: auto;
+  height: 100%;
   display: grid;
-  grid-template-rows: auto auto auto; /* header, log, composer mind auto */
+  grid-template-rows: auto 1fr auto;  /* header, log, composer */
   max-width: 980px;
   margin: 0 auto;
   padding: 24px;
@@ -58,23 +59,60 @@ html, body {
   box-shadow: var(--shadow) !important;
 }
 
-#scapp .brand { display: flex; gap: 12px; align-items: center; min-width: 0; }
+#scapp .brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
 
 #scapp .logo {
-  width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
-  overflow: hidden; border: 1px solid #D7D7D7 !important; background: #fff !important; flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid #D7D7D7 !important;
+  background: #fff !important;
+  flex: 0 0 auto;
 }
-#scapp .logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+#scapp .logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 #scapp .logo-fallback {
-  width: 100%; height: 100%; display: block; border-radius: 10px;
-  background: radial-gradient(70% 70% at 30% 30%, #9BE3A1 0%, rgba(155,227,161,0) 60%),
-              radial-gradient(70% 70% at 70% 70%, #8EA4FF 0%, rgba(142,164,255,0) 60%);
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 10px;
+  background: radial-gradient(70% 70% at 30% 30%, #9BE3A1 0%, rgba(155, 227, 161, 0) 60%),
+              radial-gradient(70% 70% at 70% 70%, #8EA4FF 0%, rgba(142, 164, 255, 0) 60%);
 }
 
-#scapp .ttl { font-weight: 700; letter-spacing: .3px; color: var(--ink); white-space: nowrap; }
-#scapp .sub { font-weight: 300; font-size: 12px; color: var(--muted) !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#scapp .ttl {
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: .3px;
+  color: var(--ink);
+  white-space: nowrap;
+}
 
-/* Chat log — nőhet a tartalommal */
+#scapp .sub {
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 12px;
+  color: var(--muted) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Chat log: belső, esztétikus scroll; finom magasság-határok */
 #scapp .log {
   background: var(--panel) !important;
   border: 1px solid var(--line) !important;
@@ -82,30 +120,52 @@ html, body {
   padding: 10px 12px;
   box-shadow: var(--shadow) !important;
 
-  /* ⬇️ Eltávolítjuk a plafont és a belső scrollt */
-  overflow: visible;          /* hagy nőni, oldal scrolloz */
-  /* min-height adható, ha szeretnéd: */
-  /* min-height: 200px; */
+  overflow-y: auto;            /* vissza a belső scroll */
+  min-height: 220px;           /* ne legyen túl lapos */
+  max-height: 70vh;            /* hosszú válasznál se nyomja szét a keretet */
 }
 
-#scapp .row { display: flex; gap: 10px; margin: 12px 6px; }
+#scapp .row {
+  display: flex;
+  gap: 10px;
+  margin: 12px 6px;
+}
+
 #scapp .row.you { justify-content: flex-end; }
 
-#scapp .bubble { max-width: 76%; padding: 12px 14px; line-height: 1.55; }
+#scapp .bubble {
+  max-width: 76%;
+  padding: 12px 14px;
+  line-height: 1.55;
+}
 
 #scapp .you .bubble {
-  background: var(--user) !important; color: var(--user-ink) !important;
+  background: var(--user) !important;
+  color: var(--user-ink) !important;
   border-radius: 19px 19px 6px 19px;
 }
+
 #scapp .you .bubble .meta { color: #CCCCCC !important; }
 
 #scapp .bot .bubble {
-  background: var(--bot) !important; color: var(--bot-ink) !important;
-  border-radius: 19px 19px 19px 6px; border: 1px solid #E0E0E0; box-shadow: 0 1px 3px rgba(0,0,0,.03);
+  background: var(--bot) !important;
+  color: var(--bot-ink) !important;
+  border-radius: 19px 19px 19px 6px;
+  border: 1px solid #E0E0E0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .03);
 }
 
-#scapp .name { font-size: 12px; color: var(--muted) !important; margin: 0 0 6px 2px; }
-#scapp .meta { font-size: 11px; color: var(--muted) !important; margin-top: 8px; }
+#scapp .name {
+  font-size: 12px;
+  color: var(--muted) !important;
+  margin: 0 0 6px 2px;
+}
+
+#scapp .meta {
+  font-size: 11px;
+  color: var(--muted) !important;
+  margin-top: 8px;
+}
 
 /* Composer */
 #scapp .composer {
@@ -118,45 +178,92 @@ html, body {
 #scapp textarea {
   width: 100%;
   min-height: 48px;
-  max-height: 40dvh;  /* az auto-grow JS is ezt használja plafonnak */
+  max-height: 40dvh;      /* JS auto-grow plafonhoz illeszkedik */
   resize: vertical;
   background: #F5F5F5 !important;
   color: var(--ink) !important;
   border: 1px solid var(--line) !important;
   border-radius: 12px;
   padding: 12px 14px;
-  transition: height 0.25s ease; /* lágy auto-grow animáció */
+  transition: height 0.25s ease;  /* lágy auto-grow animáció */
 }
 
 /* Placeholder */
 #scapp textarea::placeholder {
-  font-style: italic; font-weight: 300; font-size: 15px; color: #6B7280; letter-spacing: 0.1px;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 15px;
+  color: #6B7280;
+  letter-spacing: 0.1px;
 }
-#scapp textarea:focus { outline: none; border-color: var(--user) !important; }
 
-/* Send button */
-#scapp .send {
-  background: var(--cta) !important; color: var(--cta-ink) !important; font-weight: 700;
-  padding: 12px 16px;
-  border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 10px;
-  cursor: pointer; height: 41px; font-size: 15px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+#scapp textarea:focus {
+  outline: none;
+  border-color: var(--user) !important;
 }
-#scapp .send:hover { background: var(--cta-hov) !important; color: #FFFFFF !important; }
-#scapp .send:disabled { opacity: .6; cursor: not-allowed; }
+
+/* Send button (finom keret + szolid árnyék) */
+#scapp .send {
+  background: var(--cta) !important;
+  color: var(--cta-ink) !important;
+  font-weight: 700;
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  cursor: pointer;
+  height: 41px;
+  font-size: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+#scapp .send:hover {
+  background: var(--cta-hov) !important;
+  color: #FFFFFF !important;
+}
+
+#scapp .send:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
 
 /* Typing dots */
-#scapp .typing { display: inline-flex; gap: 6px; align-items: center; }
-#scapp .dot { width: 6px; height: 6px; border-radius: 999px; background: #999; opacity: .5; animation: blink 1.2s infinite; }
+#scapp .typing {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+#scapp .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #999;
+  opacity: .5;
+  animation: blink 1.2s infinite;
+}
+
 #scapp .dot:nth-child(2) { animation-delay: .15s; }
 #scapp .dot:nth-child(3) { animation-delay: .3s; }
-@keyframes blink { 0%,80%,100%{opacity:.25} 40%{opacity:1} }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: .25 }
+  40% { opacity: 1 }
+}
 
 /* Footer */
-#scapp footer { font-size: 12px; color: var(--muted) !important; text-align: center; margin-top: 4px; }
-#scapp .sep { height: 1px; background: var(--line) !important; margin: 2px 0 4px; }
+#scapp footer {
+  font-size: 12px;
+  color: var(--muted) !important;
+  text-align: center;
+  margin-top: 4px;
+}
 
-/* Scrollbar (webkit) — csak ha belső scrollra váltanál máskor */
+#scapp .sep {
+  height: 1px;
+  background: var(--line) !important;
+  margin: 2px 0 4px;
+}
+
+/* Scrollbar (webkit) */
 #scapp .log::-webkit-scrollbar { width: 10px; }
 #scapp .log::-webkit-scrollbar-thumb { background: #DDD; border-radius: 10px; }
