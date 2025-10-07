@@ -106,7 +106,7 @@ form.addEventListener('submit', async (e) => {
 
 async function streamChat(text) {
   await ensureThread();
-  const runBody = { assistant_id: "asst_syDHzWQ9i5vVnvBZccZR2Lzn" };
+  const runBody = { assistant_id: "asst_MxkKBbu6QdAOk6BvqNQMKv3Y" };
 
   const live = bubble('assistant', '<span class="typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>');
 
