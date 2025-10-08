@@ -106,8 +106,7 @@ form.addEventListener('submit', async (e) => {
 
 async function streamChat(text) {
   await ensureThread();
-  // VÁLTOZÁS: Töröltük az assistant_id beégetését.
-  // Ezentúl a Worker (worker.js) fogja használni a Cloudflare-en beállított környezeti változót.
+  // VÁLTOZÁS: TÖRLÖLTÜK AZ ASSISTANT ID BEÉGETÉSÉT.
   const runBody = {}; 
 
   const live = bubble('assistant', '<span class="typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>');
